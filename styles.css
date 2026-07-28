@@ -211,6 +211,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .board-item strong { display: block; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .board-item span { display: block; margin-top: 2px; font-family: var(--font-mono); font-size: 9.5px; color: var(--steel); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board-link { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.board-link:hover { color: var(--ink); }
 .board-empty { margin: auto; color: #B4C2C7; font-size: 18px; }
 
 /* ═══════════ FILTERS ═══════════ */
