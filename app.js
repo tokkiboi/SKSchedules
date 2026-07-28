@@ -1150,8 +1150,28 @@ function inboundBoardDetail(r) {
   return parts.join(" · ");
 }
 
+function inboundBoardRows() {
+  const detailedByContainer = new Map(
+    inboundRows
+      .filter((row) => row.container)
+      .map((row) => [clean(row.container).toUpperCase(), row])
+  );
+  return inboundPlanningRows.map((row) => {
+    const detailed = detailedByContainer.get(clean(row.container).toUpperCase());
+    if (!detailed) return row;
+    return {
+      ...row,
+      carrier: detailed.carrier || row.carrier,
+      mbl: detailed.mbl || row.mbl,
+      hbl: detailed.hbl || row.hbl,
+      trackingUrl: detailed.trackingUrl || row.trackingUrl,
+      trackingSource: detailed.trackingSource || row.trackingSource
+    };
+  });
+}
+
 function renderBoards() {
-  renderBoard("inboundBoard", inboundPlanningRows, "eta", (r) =>
+  renderBoard("inboundBoard", inboundBoardRows(), "eta", (r) =>
     `<div class="board-item" style="--c:${r.mode === "Air" ? "var(--c-b2b)" : "var(--c-transfers)"}">
       <strong>${esc(r.shipmentNo || r.container || r.mbl || "Shipment")}</strong>
       <span>${inboundBoardDetail(r)}</span>
