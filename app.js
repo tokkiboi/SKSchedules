@@ -268,6 +268,10 @@ const OFFICIAL_CONTAINER_TRACKING = [
   { carrier: "Hapag-Lloyd", keys: ["HLCU", "HAPAG"], url: (n) => "https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution.html?container=" + encodeURIComponent(n) },
   { carrier: "SM Line", keys: ["SMLM", "SMCU", "SM LINE"], url: (n) => "https://esvc.smlines.com/smline/CUP_HOM_3301.do?search_type=C&search_name=" + encodeURIComponent(n) }
 ];
+const SHIPMENT_CARRIER_HINTS = [
+  { carrier: "Maersk", patterns: [/\b(?:MCI|ES|OSL)\d+\b/i] },
+  { carrier: "HMM", patterns: [/\bHJ\d+\b/i] }
+];
 const TERMINAL_CONTAINER_TRACKING = [
   { name: "APM Terminals Pier 400", keys: ["APMT", "PIER 400"], url: "https://www.apmterminals.com/en/los-angeles/practical-information/track-and-trace" },
   { name: "Fenix Marine Services", keys: ["FENIX", "FMS TERMINAL"], url: "https://fenixmarineservices.com/" },
@@ -292,6 +296,16 @@ function containerTrackingProfile(row, container, destination = "") {
     profile.keys.some((key) => rowText.includes(key))
   );
   if (official) return { url: official.url(n), source: official.carrier + " official", carrier: official.carrier };
+
+  const shipmentHint = SHIPMENT_CARRIER_HINTS.find((hint) =>
+    hint.patterns.some((pattern) => pattern.test(rowText))
+  );
+  const hintedOfficial = shipmentHint && OFFICIAL_CONTAINER_TRACKING.find((profile) =>
+    profile.carrier === shipmentHint.carrier
+  );
+  if (hintedOfficial) {
+    return { url: hintedOfficial.url(n), source: hintedOfficial.carrier + " official", carrier: hintedOfficial.carrier };
+  }
 
   const terminal = TERMINAL_CONTAINER_TRACKING.find((profile) =>
     profile.keys.some((key) => rowText.includes(key))
@@ -430,7 +444,7 @@ function buildInboundPlanningRow(value, eta, sourceRow) {
       .trim() || container
     : text;
   const isAir = !container && /(AIR|^JSL|^KYL|^MBX|USMM)/i.test(text);
-  const tracking = container ? containerTrackingProfile({}, container, "LA / Long Beach") : { url: "", source: "" };
+  const tracking = container ? containerTrackingProfile({ SHIPMENT: text }, container, "LA / Long Beach") : { url: "", source: "" };
   return {
     mode: isAir ? "Air" : "Ocean",
     eta,
