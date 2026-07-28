@@ -109,6 +109,8 @@ button { font-family: inherit; cursor: pointer; }
 .eyebrow { margin: 0 0 4px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--steel); }
 .panel-head h2 { margin: 0; font-family: var(--font-display); font-size: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; }
 .panel-sub { margin: 5px 0 0; color: var(--steel); font-size: 12.5px; }
+.panel-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.collapsible-body[hidden] { display: none !important; }
 .badge-count { flex-shrink: 0; padding: 7px 12px; border-radius: 999px; background: #EFF3F4; color: var(--ink-2); font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; }
 .side-badge { flex-shrink: 0; padding: 7px 12px; border-radius: 8px; background: #FFF3D6; color: #8A6410; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .side-badge.badge-out { background: #FDE4DB; color: #9C3A1B; }
@@ -361,6 +363,9 @@ th[data-sort].sorted.desc::after { content: "↓"; }
   transition: border-color .15s ease, transform .15s ease;
 }
 .btn-mini:hover { border-color: var(--ink); transform: translateY(-1px); }
+.panel-toggle { background: #fff; color: var(--ink-2); }
+.panel-toggle::after { content: "▾"; margin-left: 6px; font-size: 10px; }
+.panel-toggle[aria-expanded="true"]::after { content: "▴"; }
 .complete-button { min-width: 104px; padding: 8px 10px; border: 1px solid #AFC1C8; border-radius: 7px; background: #fff; color: var(--ink-2); font: 700 11px var(--font-body); cursor: pointer; white-space: nowrap; }
 .complete-button:hover { border-color: var(--ok); color: #256B41; background: #F2FAF5; }
 .complete-button[aria-disabled="true"] { border-style: dashed; color: var(--steel); }
@@ -398,6 +403,8 @@ th[data-sort].sorted.desc::after { content: "↓"; }
   .filters { grid-template-columns: 1fr 1fr auto; }
 }
 @media (max-width: 720px) {
+  .panel-head { flex-direction: column; align-items: stretch; }
+  .panel-actions { justify-content: flex-start; }
   .filters { grid-template-columns: 1fr 1fr; }
   .filters .search-field { grid-column: 1 / -1; }
 }

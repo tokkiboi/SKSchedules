@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://docs.google.com">
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260727-2">
+<link rel="stylesheet" href="styles.css?v=20260728-13">
 </head>
 <body>
 <main class="shell">
@@ -46,40 +46,43 @@
   <section class="panel integration-panel" aria-labelledby="sourceHubHead">
     <div class="panel-head">
       <div><p class="eyebrow">Direct source access</p><h2 id="sourceHubHead">All source data links</h2></div>
-      <div>
+      <div class="panel-actions">
         <span class="badge-count" id="sourceOkCount">0/0 online</span>
+        <button id="toggleIntegration" class="btn-mini panel-toggle" type="button" aria-expanded="false" aria-controls="sourceHubBody">Show details</button>
         <button id="exportIntegration" class="btn-mini" type="button" title="Download source health JSON">⭳ Source JSON</button>
       </div>
     </div>
-    <div id="sourceStrip" class="source-strip" aria-live="polite"></div>
+    <div id="sourceHubBody" class="collapsible-body" hidden>
+      <div id="sourceStrip" class="source-strip" aria-live="polite"></div>
 
-    <div class="database-bar">
-      <div id="databaseStatus"><strong>Sheets fallback active</strong><span>Database activation pending · dashboard remains fully operational</span></div>
-      <form id="databaseSignIn" class="database-sign-in" hidden>
-        <label class="visually-hidden" for="databaseEmail">StyleKorean member email</label>
-        <input id="databaseEmail" name="email" type="email" autocomplete="email" placeholder="name@stylekoreanus.com" required>
-        <button class="btn-mini" type="submit">Sign in</button>
-        <span id="databaseResult" class="mono"></span>
-      </form>
-      <button id="databaseSignOut" class="btn-mini" type="button" hidden>Sign out</button>
-    </div>
+      <div class="database-bar">
+        <div id="databaseStatus"><strong>Sheets fallback active</strong><span>Database activation pending · dashboard remains fully operational</span></div>
+        <form id="databaseSignIn" class="database-sign-in" hidden>
+          <label class="visually-hidden" for="databaseEmail">StyleKorean member email</label>
+          <input id="databaseEmail" name="email" type="email" autocomplete="email" placeholder="name@stylekoreanus.com" required>
+          <button class="btn-mini" type="submit">Sign in</button>
+          <span id="databaseResult" class="mono"></span>
+        </form>
+        <button id="databaseSignOut" class="btn-mini" type="button" hidden>Sign out</button>
+      </div>
 
-    <div id="integrationSummary" class="integration-summary" aria-live="polite"></div>
-    <div class="table-wrap integration-table-wrap">
-      <table class="data-table integration-table" aria-label="Source integration health">
-        <thead>
-          <tr>
-            <th scope="col">Source</th>
-            <th scope="col">Provider</th>
-            <th scope="col">Kind</th>
-            <th scope="col">Range</th>
-            <th scope="col">Rows</th>
-            <th scope="col">State</th>
-            <th scope="col">Open</th>
-          </tr>
-        </thead>
-        <tbody id="integrationRows"></tbody>
-      </table>
+      <div id="integrationSummary" class="integration-summary" aria-live="polite"></div>
+      <div class="table-wrap integration-table-wrap">
+        <table class="data-table integration-table" aria-label="Source integration health">
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">Provider</th>
+              <th scope="col">Kind</th>
+              <th scope="col">Range</th>
+              <th scope="col">Rows</th>
+              <th scope="col">State</th>
+              <th scope="col">Open</th>
+            </tr>
+          </thead>
+          <tbody id="integrationRows"></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -165,6 +168,6 @@
 <script src="database-client.js?v=20260728-12"></script>
 <script src="platform-config.js?v=20260728-12"></script>
 <script src="site-config.js?v=20260728-12"></script>
-<script src="app.js?v=20260728-12"></script>
+<script src="app.js?v=20260728-13"></script>
 </body>
 </html>

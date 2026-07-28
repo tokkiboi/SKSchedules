@@ -1489,7 +1489,24 @@ function debounce(fn, ms) {
   return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
 }
 
+function setupCollapsiblePanel(buttonId, bodyId) {
+  const button = $(buttonId);
+  const body = $(bodyId);
+  if (!button || !body) return;
+  const sync = () => {
+    const expanded = !body.hidden;
+    button.setAttribute("aria-expanded", String(expanded));
+    button.textContent = expanded ? "Hide details" : "Show details";
+  };
+  button.addEventListener("click", () => {
+    body.hidden = !body.hidden;
+    sync();
+  });
+  sync();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  setupCollapsiblePanel("toggleIntegration", "sourceHubBody");
   $("refresh").addEventListener("click", () => load());
   $("outSearch").addEventListener("input", debounce(renderOutbound, 120));
   $("srcFilter").addEventListener("change", renderOutbound);
