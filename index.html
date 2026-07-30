@@ -1,345 +1,122 @@
-<<<<<<< HEAD
-<!doctype html>
-<html lang="en">
-<head>
-<<<<<<< HEAD
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<title>StyleKorean Logistics Hub — Live Shipping Dashboard</title>
-<meta name="description" content="Live StyleKorean inbound and outbound logistics dashboard, synced from Logistics Master 2026.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%272%27 y=%278%27 width=%2728%27 height=%2716%27 rx=%272%27 fill=%27%23E4572E%27/%3E%3Cpath d=%27M7 10v12M12 10v12M17 10v12M22 10v12M27 10v12%27 stroke=%27%23B23A1C%27 stroke-width=%271.6%27/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://docs.google.com">
-<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260728-13">
-</head>
-<body>
-<main class="shell">
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="./assets/index-FAfue5Gs.css" data-rsc-css-href="./assets/index-FAfue5Gs.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="./assets/layout-segment-context-COFs7kVg.js" crossorigin=""/><link rel="modulepreload" href="./assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="./assets/index-DZTZSwzV.js" crossorigin=""/><link rel="modulepreload" href="./assets/framework-DjPHiq1u.js" crossorigin=""/><link rel="modulepreload" href="./assets/page-0mYmYE07.js" crossorigin=""/><title>StyleKorean Logistics Hub — Live Shipping Dashboard</title><meta name="description" content="Live StyleKorean inbound and outbound logistics dashboard."/><link rel="shortcut icon" href="./favicon.svg"/><link rel="icon" href="./favicon.svg"/><meta name="codex-preview" content="development"/><script>self.__VINEXT_RSC_PARAMS__={}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/","searchParams":[]}</script><link rel="modulepreload" href="./assets/index-DZTZSwzV.js" />
+<link rel="preload" href="./assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-  <!-- ══════════ MANIFEST HEADER ══════════ -->
-  <header class="manifest">
-    <div class="manifest-route" aria-hidden="true">
-      <span>KRPUS ⚓ USLAX</span><span class="route-line"></span><span>ICN ✈ LAX</span><span class="route-line"></span><span>5609 RIVERWAY · BUENA PARK CA</span>
-    </div>
-    <div class="manifest-main">
-      <div>
-        <p class="manifest-eyebrow">Logistics Master 2026 · Live workbook sync</p>
-        <h1>StyleKorean<br>Logistics Hub</h1>
-        <p class="manifest-sub">Every outbound order, inbound container, and small-parcel delivery across all eleven workbook sources — one board.</p>
-      </div>
-      <div class="manifest-actions">
-        <button id="refresh" class="btn btn-solid">↻ Refresh data</button>
-        <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1M-vZ24Yw4ZN7R7b_473cVn8kny8DznTakSsD3VQsCzc" target="_blank" rel="noreferrer">Open Google Sheet ↗</a>
-      </div>
-    </div>
-    <div class="sync-bar" role="status" aria-live="polite">
-      <span><span id="dot" class="sync-dot" aria-hidden="true"></span><span id="sync">Importing Logistics Master 2026…</span></span>
-      <span>Last updated: <strong id="updated" class="mono">—</strong></span>
-    </div>
-  </header>
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
 
-  <!-- ══════════ METRICS ══════════ -->
-  <section id="metrics" class="metrics" aria-label="Key metrics"></section>
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
 
-  <!-- ══════════ SOURCE ACCESS HUB ══════════ -->
-  <section class="panel integration-panel" aria-labelledby="sourceHubHead">
-    <div class="panel-head">
-      <div><p class="eyebrow">Direct source access</p><h2 id="sourceHubHead">All source data links</h2></div>
-      <div class="panel-actions">
-        <span class="badge-count" id="sourceOkCount">0/0 online</span>
-        <button id="toggleIntegration" class="btn-mini panel-toggle" type="button" aria-expanded="false" aria-controls="sourceHubBody">Show details</button>
-        <button id="exportIntegration" class="btn-mini" type="button" title="Download source health JSON">⭳ Source JSON</button>
-      </div>
-    </div>
-    <div id="sourceHubBody" class="collapsible-body" hidden>
-      <div id="sourceStrip" class="source-strip" aria-live="polite"></div>
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(./assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-      <div class="database-bar">
-        <div id="databaseStatus"><strong>Sheets fallback active</strong><span>Database activation pending · dashboard remains fully operational</span></div>
-        <form id="databaseSignIn" class="database-sign-in" hidden>
-          <label class="visually-hidden" for="databaseEmail">StyleKorean member email</label>
-          <input id="databaseEmail" name="email" type="email" autocomplete="email" placeholder="name@stylekoreanus.com" required>
-          <button class="btn-mini" type="submit">Sign in</button>
-          <span id="databaseResult" class="mono"></span>
-        </form>
-        <button id="databaseSignOut" class="btn-mini" type="button" hidden>Sign out</button>
-      </div>
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
 
-      <div id="integrationSummary" class="integration-summary" aria-live="polite"></div>
-      <div class="table-wrap integration-table-wrap">
-        <table class="data-table integration-table" aria-label="Source integration health">
-          <thead>
-            <tr>
-              <th scope="col">Source</th>
-              <th scope="col">Provider</th>
-              <th scope="col">Kind</th>
-              <th scope="col">Range</th>
-              <th scope="col">Rows</th>
-              <th scope="col">State</th>
-              <th scope="col">Open</th>
-            </tr>
-          </thead>
-          <tbody id="integrationRows"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════ INBOUND 14-DAY ══════════ -->
-  <section class="panel" aria-labelledby="inEtaHead">
-    <div class="panel-head">
-      <div><p class="eyebrow">Next 14 days</p><h2 id="inEtaHead">SCHEDULED IMPORT INBOUNDS</h2></div>
-      <span class="side-badge">Inbound</span>
-    </div>
-    <div id="inboundBoard" class="board-host"></div>
-  </section>
-
-  <!-- ══════════ OUTBOUND 14-DAY ══════════ -->
-  <section class="panel" aria-labelledby="outEtaHead">
-    <div class="panel-head">
-      <div><p class="eyebrow">Next 14 days</p><h2 id="outEtaHead">Upcoming outbound schedule</h2></div>
-      <span class="side-badge badge-out">Outbound</span>
-    </div>
-    <div id="outboundBoard" class="board-host"></div>
-  </section>
-
-  <!-- ══════════ OUTBOUND TABLE ══════════ -->
-  <section class="panel" aria-labelledby="outTableHead">
-    <div class="panel-head">
-      <div><p class="eyebrow">All sources merged</p><h2 id="outTableHead">Outbound shipping schedule</h2></div>
-      <span class="badge-count" id="outCount">0 rows</span>
-    </div>
-    <div class="filters">
-      <label class="search-field"><span class="visually-hidden">Search outbound</span><span class="icon" aria-hidden="true">⌕</span><input id="outSearch" type="search" placeholder="Search customer, invoice #, PRO / tracking #, carrier…"></label>
-      <label><span class="visually-hidden">Filter by source</span><select id="srcFilter"><option value="">All sources</option></select></label>
-      <label><span class="visually-hidden">Filter by status</span><select id="outStatus"><option value="">All statuses</option></select></label>
-      <label class="toggle"><input type="checkbox" id="showFinished"> Show finished</label>
-      <button id="exportCsv" class="btn-mini" type="button" title="Download the current filtered view as CSV">⭳ CSV</button>
-    </div>
-    <div class="table-wrap">
-      <table class="data-table" id="outTable">
-        <thead><tr><th data-sort="source" aria-sort="none" scope="col">Source</th><th data-sort="shipDate" aria-sort="ascending" scope="col" class="sorted">Ship date</th><th data-sort="customer" aria-sort="none" scope="col">Customer / Invoice #</th><th scope="col">Carrier / PRO / Tracking #</th><th scope="col">Units</th><th scope="col">Dims (in) · lbs</th><th data-sort="destination" aria-sort="none" scope="col">Destination</th><th data-sort="rate" aria-sort="none" scope="col">Rate</th><th data-sort="status" aria-sort="none" scope="col">Status</th><th scope="col">Action</th></tr></thead>
-        <tbody id="outRows"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ══════════ INBOUND TABLE ══════════ -->
-  <section class="panel" aria-labelledby="inTableHead">
-    <div class="panel-head">
-      <div><p class="eyebrow">Ocean · Air</p><h2 id="inTableHead">Inbound shipments</h2></div>
-      <span class="badge-count" id="inCount">0 rows</span>
-    </div>
-    <div class="filters">
-      <label class="search-field"><span class="visually-hidden">Search inbound</span><span class="icon" aria-hidden="true">⌕</span><input id="inSearch" type="search" placeholder="Search shipment #, invoice #, container, MBL, HBL…"></label>
-      <label><span class="visually-hidden">Filter by mode</span><select id="modeFilter"><option value="">All modes</option><option>Ocean</option><option>Air</option></select></label>
-      <label class="toggle"><input type="checkbox" id="showInboundFinished"> Show received / finished</label>
-    </div>
-    <div class="table-wrap">
-      <table class="data-table" id="inTable">
-        <thead><tr><th>Mode</th><th>ETA</th><th>Shipment #</th><th data-field="invoice">Invoice #</th><th>Container / Tracking #</th><th>MBL · HBL</th><th>Carrier</th><th>Origin</th><th>Destination</th><th>Status</th></tr></thead>
-        <tbody id="inRows"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ══════════ SMALL PARCEL ══════════ -->
-  <section class="panel" aria-labelledby="parcelHead">
-    <div class="panel-head">
-      <div><p class="eyebrow">UPS · FedEx · USPS · DHL · Amazon</p><h2 id="parcelHead">Active small-parcel tracking</h2></div>
-      <span class="badge-count" id="parcelCount">0</span>
-    </div>
-    <div id="parcelGrid" class="parcel-grid"></div>
-  </section>
-
-  <div id="setupNotice" class="setup-notice hidden">
-    <strong>Can't reach the workbook.</strong> Check that LOGISTICS MASTER 2026 is link-readable
-    (Share → Anyone with the link → Viewer). Each source loads independently.
-  </div>
-
-  <footer>
-    <p><strong>SK</strong> StyleKorean Logistics · Buena Park / Santa Fe Springs CA · Saddle Brook NJ</p>
-    <p class="mono" id="footNote">Synced read-only from Google Sheets · auto-refreshes every 10 min</p>
-  </footer>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.7" crossorigin="anonymous"></script>
-<script src="database-config.js?v=20260728-12"></script>
-<script src="database-client.js?v=20260728-12"></script>
-<script src="platform-config.js?v=20260728-12"></script>
-<script src="site-config.js?v=20260728-12"></script>
-<script src="app.js?v=20260728-14"></script>
-=======
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Logistics Live Dashboard</title>
-  <meta name="description" content="Live inbound and outbound logistics dashboard powered by Google Sheets data." />
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div class="app-shell">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">LOGISTICS MASTER 2026</p>
-        <h1>Live Shipping Dashboard</h1>
-        <p class="hero-subtitle">
-          Public web dashboard linked to <strong>All Outbound Shipping Schedule</strong> and
-          <strong>INBOUND SHIPMENTS DATA</strong>.
-        </p>
-      </div>
-      <div class="hero-actions">
-        <button id="refreshBtn" class="button primary">Refresh Data</button>
-        <a class="button ghost" id="sheetLink" target="_blank" rel="noreferrer">Open Google Sheet</a>
-      </div>
-    </header>
-
-    <section id="setupNotice" class="notice hidden">
-      <strong>Data access notice:</strong>
-      This webpage fetches directly from Google Sheets. The spreadsheet must be published to the web or shared publicly for browser access.
-      See <code>README.md</code> for the exact publish steps.
-    </section>
-
-    <section class="status-strip">
-      <div>
-        <span class="status-dot" id="connectionDot"></span>
-        <span id="connectionText">Waiting to load data…</span>
-      </div>
-      <div id="lastUpdated">Last updated: —</div>
-    </section>
-
-    <section class="kpi-grid" aria-label="Dashboard metrics">
-      <article class="kpi-card">
-        <span class="kpi-label">Outbound Shipments</span>
-        <strong id="kpiOutbound">—</strong>
-        <small id="kpiOutboundSub">All visible rows</small>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Outbound Shipped</span>
-        <strong id="kpiShipped">—</strong>
-        <small>Rows marked shipped</small>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Inbound Active</span>
-        <strong id="kpiInbound">—</strong>
-        <small>Delivered excluded</small>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Inbound Ocean</span>
-        <strong id="kpiOcean">—</strong>
-        <small>Container shipments</small>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Parcel / Air</span>
-        <strong id="kpiParcelAir">—</strong>
-        <small>UPS/FedEx/DHL/USPS + Air</small>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Estimated Outbound Cost</span>
-        <strong id="kpiRate">—</strong>
-        <small>Numeric RATE rows only</small>
-      </article>
-    </section>
-
-    <main class="main-grid">
-      <section class="panel wide">
-        <div class="panel-header">
-          <div>
-            <h2>Upcoming Inbound ETA</h2>
-            <p>Next 14 days, delivered rows excluded.</p>
-          </div>
-          <span class="badge inbound">Inbound</span>
-        </div>
-        <div id="inboundTimeline" class="timeline-grid"></div>
-      </section>
-
-      <section class="panel wide">
-        <div class="panel-header">
-          <div>
-            <h2>Outbound Source Mix</h2>
-            <p>Pastel source colors match the outbound schedule source categories.</p>
-          </div>
-          <span class="badge outbound">Outbound</span>
-        </div>
-        <div id="sourceLegend" class="source-legend"></div>
-      </section>
-
-      <section class="panel table-panel">
-        <div class="panel-header">
-          <div>
-            <h2>All Outbound Shipping Schedule</h2>
-            <p>Live rows from the outbound schedule tab.</p>
-          </div>
-          <span id="outboundCount" class="count-pill">— rows</span>
-        </div>
-
-        <div class="filters">
-          <input id="outboundSearch" type="search" placeholder="Search customer, invoice, carrier, PRO#, address…" />
-          <select id="sourceFilter">
-            <option value="">All sources</option>
-          </select>
-          <select id="statusFilter">
-            <option value="">All statuses</option>
-          </select>
-        </div>
-
-        <div class="table-wrap">
-          <table id="outboundTable">
-            <thead></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="panel table-panel">
-        <div class="panel-header">
-          <div>
-            <h2>Inbound Shipments Data</h2>
-            <p>Live rows from inbound data tab.</p>
-          </div>
-          <span id="inboundCount" class="count-pill">— rows</span>
-        </div>
-
-        <div class="filters">
-          <input id="inboundSearch" type="search" placeholder="Search shipment, container, MBL, HBL, entry, notes…" />
-          <select id="carrierTypeFilter">
-            <option value="">All carrier types</option>
-          </select>
-          <select id="inboundStatusFilter">
-            <option value="">All statuses</option>
-          </select>
-        </div>
-
-        <div class="table-wrap">
-          <table id="inboundTable">
-            <thead></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <span>Live Google Sheets dashboard</span>
-      <span>Designed for outbound + inbound logistics operations</span>
-    </footer>
-  </div>
-
-  <script src="./app.js"></script>
->>>>>>> a934e44 (Add files via upload)
-</body>
-</html>
-=======
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>StyleKorean Logistics Hub</title><meta name="description" content="Live StyleKorean inbound and outbound logistics dashboard"><link rel="stylesheet" href="styles.css"></head><body>
-<main><div class="site-shell">
-<header class="hero"><div class="hero-copy"><div class="brand-lockup"><span class="brand-mark">SK</span><span>LOGISTICS MASTER 2026</span></div><h1>Live Shipping Dashboard</h1><p>One clear view of every outbound order, inbound shipment, and small-parcel delivery.</p></div><div class="hero-actions"><button id="refresh" class="button button-light">↻ Refresh data</button><a class="button button-glass" href="https://docs.google.com/spreadsheets/d/1M-vZ24Yw4ZN7R7b_473cVn8kny8DznTakSsD3VQsCzc" target="_blank" rel="noreferrer">Open Google Sheet</a></div></header>
-<div class="sync-bar"><div><span id="dot" class="sync-dot"></span><span id="sync">Importing Logistics Master 2026…</span></div><div>Last updated: <strong id="updated">—</strong></div></div>
-<section id="metrics" class="metrics"></section>
-<section class="panel eta-panel"><div class="panel-heading"><div><p class="eyebrow">NEXT 14 DAYS</p><h2>Upcoming inbound ETA</h2><p>Active arrivals sorted by ETA. Delivered rows are excluded.</p></div><span class="section-badge">Inbound</span></div><div id="inboundUpcoming" class="eta-grid"></div></section>
-<section class="panel eta-panel outbound-eta-panel"><div class="panel-heading"><div><p class="eyebrow outbound-eyebrow">NEXT 14 DAYS</p><h2>Upcoming outbound schedules</h2><p>Active orders sorted by ship date. Delivered and completed rows are excluded.</p></div><span class="section-badge outbound-badge">Outbound</span></div><div id="outboundUpcoming" class="eta-grid"></div></section>
-<section class="panel table-panel"><div class="panel-heading compact"><div><p class="eyebrow">OUTBOUND</p><h2>All outbound shipping schedule</h2><p>All populated rows from Transfers, Ulta, iHerb, B2B/E-com Trucking, and WH Trucking Request.</p></div><span id="outCount" class="row-count">0 rows</span></div><div class="filters"><label class="search-field"><input id="outSearch" placeholder="Search customer, invoice, carrier, PRO#, address…"></label><select id="source"><option value="">All sources</option></select><select id="outStatus"><option value="">All statuses</option></select></div><div class="table-wrap"><table><thead><tr><th>Source</th><th>Ship date</th><th>Customer / invoice</th><th>Carrier / PRO#</th><th>Load</th><th>Destination</th><th>Rate</th><th>Status</th></tr></thead><tbody id="outRows"></tbody></table></div></section>
-<section class="panel table-panel"><div class="panel-heading compact"><div><p class="eyebrow">OCEAN + AIR</p><h2>Inbound shipments data</h2><p>Shipment #, MBL, HBL, container, ETA and one-click carrier tracking.</p></div><span id="inCount" class="row-count">0 rows</span></div><div class="filters inbound-filters"><label class="search-field"><input id="inSearch" placeholder="Search shipment, container, MBL, HBL, carrier…"></label><select id="mode"><option value="">All modes</option><option>Ocean</option><option>Air</option></select></div><div class="table-wrap"><table><thead><tr><th>Mode</th><th>ETA</th><th>Shipment #</th><th>MBL</th><th>HBL</th><th>Container #</th><th>Carrier</th><th>Route</th><th>Status</th></tr></thead><tbody id="inRows"></tbody></table></div></section>
-<footer><div><span class="brand-mark small">SK</span><strong>StyleKorean Logistics</strong></div><p>Outbound, inbound and parcel operations · Buena Park, California</p></footer>
-</div></main><script src="app.js"></script></body></html>
->>>>>>> 76f9a76 (Match GitHub Pages dashboard to private Sites design)
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n antialiased"><main class="site-shell"><header class="manifest"><div class="route-strip"><span>KRPUS ⚓ USLAX</span><i></i><span>ICN ✈ LAX</span><i></i><span>5609 RIVERWAY · BUENA PARK CA</span></div><div class="manifest-main"><div><p class="eyebrow">LOGISTICS MASTER 2026 · LIVE WORKBOOK SYNC</p><h1>StyleKorean<br/>Logistics Hub</h1><p class="intro">Every import, inbound delivery, trucking move, and small-parcel shipment across the next fourteen days—one operational board.</p></div><div class="manifest-actions"><button class="button primary" disabled="">SYNCING…</button><div class="source-buttons" aria-label="Source workbooks"><a class="button secondary" href="https://docs.google.com/spreadsheets/d/1M-vZ24Yw4ZN7R7b_473cVn8kny8DznTakSsD3VQsCzc/edit" target="_blank" rel="noreferrer">MASTER</a><a class="button secondary" href="https://docs.google.com/spreadsheets/d/12Aty04yiLPPqz06AFDM8Y1Log2jEOqdXDqwiUV5yVX8/edit?gid=99300389#gid=99300389" target="_blank" rel="noreferrer">NATIONAL</a><a class="button secondary" href="https://docs.google.com/spreadsheets/d/14lH9SQzTLj8MR7UbxMfkoTDDlzhPoE8CqHV3IpK450I/edit?gid=0#gid=0" target="_blank" rel="noreferrer">SALES</a></div></div></div><div class="sync-strip" role="status" aria-live="polite"><span><b class="sync-dot loading"></b>Syncing live records…</span><span class="mono">AUTO SYNC 30 MIN · LAST SYNC <!-- -->—<!-- --> · <!-- -->NEXT CHECK <!-- -->—</span></div></header><section class="metrics" aria-label="Two-week schedule totals"><article><span>INBOUND</span><strong>0</strong><small>arrivals in view</small></article><article><span>OUTBOUND</span><strong>0</strong><small>shipments in view</small></article><article><span>DUE TODAY</span><strong>0</strong><small>combined moves</small></article><article class=""><span>EXCEPTIONS</span><strong>0</strong><small>pending / hold / delayed</small></article></section><section class="kpi-panel" aria-labelledby="kpi-heading"><div class="kpi-heading"><div><p class="eyebrow">2026 ACTUALS · INVOICE FIRST / RATE FALLBACK</p><h2 id="kpi-heading">KPI Control Tower</h2></div><span>MTD / YTD</span></div><div class="kpi-grid"><article class="kpi-card"><span>SHIPPING COSTS</span><div><small>MTD</small><strong>$0</strong></div><div><small>YTD</small><strong>$0</strong></div></article><article class="kpi-card"><span>TRANSFER SHIPPING</span><div><small>MTD</small><strong>$0</strong></div><div><small>YTD</small><strong>$0</strong></div></article><article class="kpi-card"><span>SALES · STYLEKOREAN · AS OF JUL 29</span><div><small>MTD</small><strong>$3,147,082.37</strong></div><div><small>YTD</small><strong>$15,136,503.50</strong></div></article><article class="kpi-card kpi-carrier"><span>TOP CARRIER · YTD</span><strong>—</strong><small>0<!-- --> moves</small></article><article class="kpi-card kpi-split"><span>TRUCKLOAD MIX · YTD</span><div><small>LTL</small><strong>0<!-- -->%</strong></div><div><small>FTL</small><strong>0<!-- -->%</strong></div></article><article class="kpi-card kpi-average"><span>AVG TRUCKING COST · YTD</span><div><small>LOCAL ≤50 MI</small><strong>$0</strong></div><div><small>CALIFORNIA</small><strong>$0</strong></div><div><small>OUT OF STATE</small><strong>$0</strong></div></article></div><p class="kpi-method">All rows, including hidden/completed entries. Shipping costs use freight Invoice first, then Rate when Invoice is blank—never shipment Invoice Amount. Sales as of July 29, 2026 use only the Stylekorean Date (column A) and numeric INVOICE AMOUNT (column G); text entries such as “FREE SAMPLE” and “FOC” are excluded. Sales MTD covers July 1–29 and YTD covers January 1–July 29. Trucking averages exclude transfers and unclassified destinations; local is within 50 miles of Buena Park.<!-- --> <a href="https://docs.google.com/spreadsheets/d/14lH9SQzTLj8MR7UbxMfkoTDDlzhPoE8CqHV3IpK450I/edit?gid=0#gid=0" target="_blank" rel="noreferrer">Open source spreadsheet</a>.</p></section><section class="control-panel" aria-label="Schedule filters"><label class="search"><span>⌕</span><input type="search" placeholder="Search shipment, customer, invoice, container, carrier…" value=""/></label><label class="finished-toggle"><input type="checkbox"/>Show completed entries</label></section><section class="source-legend" aria-label="Entry source colors"><strong>Mode &amp; carrier colors</strong><div><span class="source-wholesale"><i aria-hidden="true"></i>Wholesale</span><span class="source-ocean"><i aria-hidden="true"></i>Ocean</span><span class="source-air"><i aria-hidden="true"></i>Air</span><span class="source-ups-parcel"><i aria-hidden="true"></i>UPS (Parcel)</span><span class="source-fedex-parcel"><i aria-hidden="true"></i>FedEx (Parcel)</span><span class="source-usps"><i aria-hidden="true"></i>USPS</span><span class="source-amazon"><i aria-hidden="true"></i>Amazon</span><span class="source-dhl-parcel"><i aria-hidden="true"></i>DHL (Small Parcel)</span><span class="source-ups-freight"><i aria-hidden="true"></i>UPS (Freight)</span><span class="source-fedex-freight"><i aria-hidden="true"></i>FedEx (Freight)</span><span class="source-dhl-freight"><i aria-hidden="true"></i>DHL (Freight)</span></div></section><section class="source-legend department-legend" aria-label="Outbound department colors"><strong>Outbound departments</strong><div><span class="department-wholesale"><i aria-hidden="true"></i>Wholesale</span><span class="department-b2b-ecom"><i aria-hidden="true"></i>B2B/E-Com</span><span class="department-nationals"><i aria-hidden="true"></i>Nationals</span><span class="department-mbx"><i aria-hidden="true"></i>MBX</span><span class="department-nj"><i aria-hidden="true"></i>NJ</span></div></section><section class="import-schedules" aria-labelledby="import-schedules-heading"><div class="panel-heading import-heading"><div><p class="eyebrow">CURRENT + UPCOMING · OCEAN / AIR</p><h2 id="import-schedules-heading">Import Schedules</h2></div><div class="import-totals" aria-label="Import schedule totals"><span><b>0</b> Ocean</span><span><b>0</b> Air</span><strong>0</strong></div></div><div class="import-table-wrap"><table class="import-table"><thead><tr><th>Mode</th><th>Shipment</th><th>Invoice</th><th>MBL</th><th>HBL</th><th>Container #</th><th>VSL</th><th>POD</th><th>ETA</th><th>Status</th></tr></thead><tbody><tr><td class="import-empty" colSpan="10">Syncing import schedules…</td></tr></tbody></table></div></section><div class="schedule-stack" aria-label="Separate inbound and outbound schedules"><section class="schedule-panel inbound-panel" aria-labelledby="inbound-schedule-heading"><div class="panel-heading"><div><p class="eyebrow">ARRIVALS</p><h2 id="inbound-schedule-heading">Inbound schedule</h2></div><div class="board-total inbound"><span>INBOUND</span><strong>0</strong><small>next 14 days</small></div></div><div class="board-wrap"><div class="board"><section class="day-column today"><header><span>THU</span><strong>30</strong><small>JUL</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>FRI</span><strong>31</strong><small>JUL</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SAT</span><strong>1</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SUN</span><strong>2</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>MON</span><strong>3</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>TUE</span><strong>4</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>WED</span><strong>5</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>THU</span><strong>6</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>FRI</span><strong>7</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SAT</span><strong>8</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SUN</span><strong>9</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>MON</span><strong>10</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>TUE</span><strong>11</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>WED</span><strong>12</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section></div></div></section><section class="parcel-panel inbound-parcel-panel" aria-labelledby="inbound-small-parcel-heading"><div class="panel-heading parcel-heading"><div><p class="eyebrow">UPS · FEDEX · USPS · DHL · AMAZON</p><h2 id="inbound-small-parcel-heading">Inbound Schedule (Small Parcels)</h2></div><div class="parcel-total"><strong>0</strong><span>active</span></div></div><div class="parcel-grid"><div class="loading-card"></div></div></section><section class="schedule-panel outbound-panel" aria-labelledby="outbound-schedule-heading"><div class="panel-heading"><div><p class="eyebrow">DEPARTURES · TRUCKING ONLY</p><h2 id="outbound-schedule-heading">Outbound schedule</h2></div><div class="board-total outbound"><span>OUTBOUND</span><strong>0</strong><small>next 14 days</small></div></div><div class="board-wrap"><div class="board"><section class="day-column today"><header><span>THU</span><strong>30</strong><small>JUL</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>FRI</span><strong>31</strong><small>JUL</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SAT</span><strong>1</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SUN</span><strong>2</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>MON</span><strong>3</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>TUE</span><strong>4</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>WED</span><strong>5</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>THU</span><strong>6</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>FRI</span><strong>7</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SAT</span><strong>8</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>SUN</span><strong>9</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>MON</span><strong>10</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>TUE</span><strong>11</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section><section class="day-column"><header><span>WED</span><strong>12</strong><small>AUG</small><b>0</b></header><div class="day-items"><div class="loading-card"></div></div></section></div></div></section><section class="parcel-panel outbound-parcel-panel" aria-labelledby="outbound-small-parcel-heading"><div class="panel-heading parcel-heading"><div><p class="eyebrow">UPS · FEDEX · USPS · DHL · AMAZON</p><h2 id="outbound-small-parcel-heading">Outbound Schedule (Small Parcels)</h2></div><div class="parcel-total"><strong>0</strong><span>active</span></div></div><div class="parcel-grid"><div class="loading-card"></div></div></section></div><footer><p><strong>SK</strong> STYLEKOREAN LOGISTICS · COMPANY OPERATIONS</p><p class="mono">AUTO-REFRESH 30 MIN · STATUS EDITS SYNC TO SOURCE ROWS</p></footer></main><script id="_R_">import("./assets/index-DZTZSwzV.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"./assets/index-FAfue5Gs.css\",\"style\"]\n0:{\"__route\":\"route:/\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:./assets/index-FAfue5Gs.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"./assets/index-FAfue5Gs.css\",\"data-rsc-css-href\":\"./assets/index-FAfue5Gs.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"Starter Project\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"A clean starting point for building your site.\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:4uhn5s1wvoptc\",\"deploymentVersion\":\"6d6e0c46-43eb-4977-b7f9-0edc61619b79\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:I[\"6efdf509a785\",[],\"default\",1]\n1:[\"$\",\"$L6\",null,{\"params\":\"$@7\",\"searchParams\":\"$@8\"}]\n7:{}\n8:{}\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>
