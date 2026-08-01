@@ -42,9 +42,9 @@ function syncInventoryModule() {
   if (!lock.tryLock(5000)) return;
   var startedAt = Date.now();
   try {
+    var incoming = readAllocationIncoming_(startedAt);   // SKU -> incoming/allocated (heaviest read goes first)
     var stock = readWmsStockSnapshot_();                 // SKU -> on-hand
     var containers = readWmsContainerLog_();             // 차수 -> receiving status
-    var incoming = readAllocationIncoming_(startedAt);   // SKU -> incoming/allocated
     writeInventoryTab_(stock, incoming, containers);
     updateKpiDashboard_(stock, incoming, containers);
     logPipeline_("INVENTORY SYNC", "ok",
@@ -101,29 +101,41 @@ function readWmsStockSnapshot_() {
   throw new Error("WMS stock snapshot tab (SKU + Avail Qty headers) not found.");
 }
 
-/** Reads the container receiving log (Type · 차수 · PC · 입고일 · 검수 완료일). */
+/**
+ * Reads the container receiving log (Type · 차수 · PC · 입고일 · 검수 완료일).
+ * The header may not be on row 1 and column labels vary slightly, so this
+ * scans the first 3 rows of the first 15 tabs for a row containing 차수.
+ */
 function readWmsContainerLog_() {
   var ss = SpreadsheetApp.openById(INVENTORY_SYNC.wmsId);
   var sheets = ss.getSheets();
-  for (var i = 0; i < sheets.length; i++) {
+  for (var i = 0; i < Math.min(sheets.length, 15); i++) {
     var sheet = sheets[i];
     if (sheet.getLastRow() < 2) continue;
-    var header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getDisplayValues()[0]
-      .map(function (c) { return String(c || "").trim(); });
-    var upper = header.map(function (h) { return h.toUpperCase(); });
-    if (header.indexOf("차수") !== -1 && upper.indexOf("PC") !== -1) {
+    var scan = sheet.getRange(1, 1, Math.min(3, sheet.getLastRow()), sheet.getLastColumn()).getDisplayValues();
+    for (var h = 0; h < scan.length; h++) {
+      var header = scan[h].map(function (c) { return String(c || "").trim(); });
+      if (header.indexOf("차수") === -1) continue;
       var col = {};
-      header.forEach(function (h, idx) { col[h] = idx; });
-      var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getDisplayValues()
+      header.forEach(function (name, idx) { if (name && col[name] === undefined) col[name] = idx; });
+      var pick = function (row, names) {
+        for (var n = 0; n < names.length; n++) {
+          if (col[names[n]] !== undefined) return String(row[col[names[n]]] || "").trim();
+        }
+        return "";
+      };
+      var startRow = h + 2;
+      if (sheet.getLastRow() < startRow) break;
+      var rows = sheet.getRange(startRow, 1, sheet.getLastRow() - startRow + 1, sheet.getLastColumn()).getDisplayValues()
         .filter(function (row) { return String(row[col["차수"]] || "").trim(); })
         .map(function (row) {
           return {
-            type: String(row[col["Type"]] !== undefined ? row[col["Type"]] : row[0] || "").trim(),
-            shipmentCode: String(row[col["차수"]] || "").trim(),            // e.g. "TW 12", "HJ 31"
-            pcNumber: String(row[col["PC"]] || "").trim(),                  // e.g. "PC00146273"
-            receivedDate: String(row[col["입고일"]] || "").trim(),
-            qcDoneDate: String(row[col["검수 완료일"]] || "").trim(),
-            remark: String(col["WHS REMARK"] !== undefined ? row[col["WHS REMARK"]] : "").trim()
+            type: pick(row, ["Type", "TYPE"]) || String(row[0] || "").trim(),
+            shipmentCode: String(row[col["차수"]] || "").trim(),      // e.g. "TW 12", "HJ 31"
+            pcNumber: pick(row, ["PC", "PC#", "PC NO", "PC NO."]),    // e.g. "PC00146273"
+            receivedDate: pick(row, ["입고일", "입고 일", "입고일자"]),
+            qcDoneDate: pick(row, ["검수 완료일", "검수완료일", "검수 완료"]),
+            remark: pick(row, ["WHS REMARK", "REMARK", "비고"])
           };
         });
       var byCode = {};
@@ -147,12 +159,14 @@ function readAllocationIncoming_(startedAt) {
   var bySku = {};
   var partial = false;
 
+  var allocBudgetMs = INVENTORY_SYNC.runBudgetMs - 60 * 1000; // reserve a minute for WMS reads + writes
   for (var s = 0; s < sheets.length; s++) {
-    if (Date.now() - startedAt > INVENTORY_SYNC.runBudgetMs) { partial = true; break; }
+    if (Date.now() - startedAt > allocBudgetMs) { partial = true; break; }
     var sheet = sheets[s];
     if (sheet.getLastRow() < 2 || sheet.getLastColumn() < 4) continue;
+    if (sheet.getLastColumn() > 40) continue; // skip the wide per-shipment tracker tab
 
-    var data = sheet.getRange(1, 1, Math.min(sheet.getLastRow(), 500), sheet.getLastColumn()).getDisplayValues();
+    var data = sheet.getRange(1, 1, Math.min(sheet.getLastRow(), 300), Math.min(sheet.getLastColumn(), 16)).getDisplayValues();
     // Header can be on row 1 or 2; require SKU + Cnfm Qty to treat the tab as an allocation sheet.
     var headerIdx = -1, col = {};
     for (var r = 0; r < Math.min(3, data.length); r++) {
