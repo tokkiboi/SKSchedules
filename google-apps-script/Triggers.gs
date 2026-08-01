@@ -16,7 +16,7 @@ var TRIGGER_PLAN = [
   { handler: "processLogisticsEmails", minutes: 15 },          // Gmail ingestion
   { handler: "processApprovedPending", minutes: 30 },          // commit human-approved rows
   { handler: "scanAndImportWmsTruckingOrders", minutes: 30 },  // existing WMS trucking scanner (Code.gs)
-  { handler: "syncInventoryModule", minutes: 60 },             // inventory + KPI rebuild
+  { handler: "syncInventoryModule", hours: 1 },                // inventory + KPI rebuild
   { handler: "enrichImportsFromContainerLog", daily: 6 },      // 6 AM daily
   { handler: "requestSiteRedeploy", daily: 7 }                 // 7 AM daily safety redeploy
 ];
@@ -30,6 +30,7 @@ function setupAllTriggers() {
   TRIGGER_PLAN.forEach(function (t) {
     var builder = ScriptApp.newTrigger(t.handler).timeBased();
     if (t.minutes) builder.everyMinutes(t.minutes).create();
+    else if (t.hours) builder.everyHours(t.hours).create();
     else builder.everyDays(1).atHour(t.daily).create();
   });
 
