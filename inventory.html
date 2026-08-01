@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inventory · StyleKorean Logistics Hub</title>
+<link rel="icon" href="./favicon.svg" />
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff;
+    --warn: #d29922; --bad: #f85149; --good: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+  .shell { max-width: 1280px; margin: 0 auto; padding: 24px 20px 60px; }
+  header { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; justify-content: space-between; margin-bottom: 20px; }
+  .eyebrow { color: var(--muted); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 4px; }
+  h1 { margin: 0; font-size: 26px; }
+  .actions a, .actions button { background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; cursor: pointer; }
+  .actions a:hover, .actions button:hover { border-color: var(--accent); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  .kpi span { display: block; color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .kpi strong { font-size: 24px; font-variant-numeric: tabular-nums; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .controls input, .controls select { background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 13px; }
+  .controls input { flex: 1; min-width: 220px; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  th { background: var(--panel); color: var(--muted); position: sticky; top: 0; cursor: pointer; user-select: none; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.flag-out td { background: rgba(248, 81, 73, .12); }
+  tr.flag-low td { background: rgba(210, 153, 34, .12); }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px; border: 1px solid var(--border); }
+  .pill.bad { color: var(--bad); border-color: var(--bad); }
+  .pill.warn { color: var(--warn); border-color: var(--warn); }
+  .pill.info { color: var(--accent); border-color: var(--accent); }
+  .status { color: var(--muted); font-size: 12px; margin: 10px 2px; }
+  footer { margin-top: 26px; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div>
+      <p class="eyebrow">LOGISTICS MASTER 2026 · LIVE INVENTORY MODULE</p>
+      <h1>Inventory Control</h1>
+    </div>
+    <div class="actions">
+      <a href="./index.html">← Schedule Board</a>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+  </header>
+
+  <section class="kpis" id="kpiGrid" aria-label="Inventory KPIs"></section>
+
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search SKU, product, brand, barcode, location, 차수…" />
+    <select id="flagFilter">
+      <option value="">All items</option>
+      <option value="OUT OF STOCK">Out of stock</option>
+      <option value="LOW">Low stock</option>
+      <option value="INBOUND">Inbound en route</option>
+    </select>
+  </div>
+
+  <div class="tablewrap">
+    <table id="invTable">
+      <thead><tr id="headRow"></tr></thead>
+      <tbody id="bodyRows"><tr><td>Loading inventory…</td></tr></tbody>
+    </table>
+  </div>
+  <p class="status" id="statusLine">Connecting to Google Sheets…</p>
+
+  <footer><strong>SK</strong> STYLEKOREAN LOGISTICS · INVENTORY SYNCS HOURLY FROM WMS + ALLOCATION WORKBOOKS</footer>
+</div>
+
+<script>
+(() => {
+  const SHEET_ID = "1M-vZ24Yw4ZN7R7b_473cVn8kny8DznTakSsD3VQsCzc";
+  const INVENTORY_TAB = "INVENTORY";
+  const KPI_TAB = "KPI DASHBOARD";
+  const COLS = ["SKU","Product Name","Brand","On Hand (Actual)","Available","On Hold","Incoming (Confirmed)","Remaining To Receive","Inbound Shipments (차수)","Locations","Nearest Expiry","Channel Allocation","Flag"];
+  const NUM_COLS = new Set(["On Hand (Actual)","Available","On Hold","Incoming (Confirmed)","Remaining To Receive"]);
+
+  let allRows = [];
+  let headerIndex = {};
+  let sortKey = "Available", sortAsc = true;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("refreshBtn").addEventListener("click", loadAll);
+    document.getElementById("search").addEventListener("input", render);
+    document.getElementById("flagFilter").addEventListener("change", render);
+    loadAll();
+  });
+
+  async function loadAll() {
+    setStatus("Loading live inventory…");
+    try {
+      const [kpis, inventory] = await Promise.all([fetchTab(KPI_TAB), fetchTab(INVENTORY_TAB)]);
+      renderKpis(kpis);
+      const headers = inventory[0] || [];
+      headerIndex = Object.fromEntries(headers.map((h, i) => [String(h).trim(), i]));
+      allRows = inventory.slice(1).filter(r => r[headerIndex["SKU"]]);
+      render();
+      setStatus(`Live: ${allRows.length.toLocaleString()} SKUs · loaded ${new Date().toLocaleString()}`);
+    } catch (err) {
+      console.error(err);
+      setStatus("Could not load INVENTORY / KPI DASHBOARD tabs. Run syncInventoryModule() in Apps Script and confirm workbook sharing.");
+    }
+  }
+
+  async function fetchTab(name) {
+    const url = new URL(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`);
+    url.searchParams.set("tqx", "out:json");
+    url.searchParams.set("sheet", name);
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Sheets request failed: ${res.status}`);
+    const text = await res.text();
+    const payload = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1));
+    return payload.table.rows.map(row => (row.c || []).map(cell => {
+      if (!cell) return "";
+      if (cell.f !== undefined && cell.f !== null) return String(cell.f).trim();
+      if (cell.v !== undefined && cell.v !== null) return String(cell.v).trim();
+      return "";
+    }));
+  }
+
+  function renderKpis(rows) {
+    const grid = document.getElementById("kpiGrid");
+    grid.innerHTML = "";
+    rows.slice(1).forEach(row => {
+      const label = row[0], value = row[1];
+      if (!label) return;
+      const card = document.createElement("article");
+      card.className = "kpi";
+      card.innerHTML = `<span></span><strong></strong>`;
+      card.querySelector("span").textContent = label;
+      card.querySelector("strong").textContent = Number(value).toLocaleString ? (isNaN(Number(value)) ? value : Number(value).toLocaleString()) : value;
+      grid.appendChild(card);
+    });
+  }
+
+  function render() {
+    const head = document.getElementById("headRow");
+    head.innerHTML = "";
+    COLS.forEach(col => {
+      const th = document.createElement("th");
+      th.textContent = col + (sortKey === col ? (sortAsc ? " ↑" : " ↓") : "");
+      th.addEventListener("click", () => { sortAsc = sortKey === col ? !sortAsc : true; sortKey = col; render(); });
+      head.appendChild(th);
+    });
+
+    const query = document.getElementById("search").value.trim().toLowerCase();
+    const flag = document.getElementById("flagFilter").value;
+    const flagIdx = headerIndex["Flag"];
+
+    let rows = allRows.filter(row => {
+      if (query && !row.join(" ").toLowerCase().includes(query)) return false;
+      if (flag && !(String(row[flagIdx] || "").toUpperCase().includes(flag))) return false;
+      return true;
+    });
+
+    const idx = headerIndex[sortKey];
+    rows.sort((a, b) => {
+      const av = a[idx] || "", bv = b[idx] || "";
+      const cmp = NUM_COLS.has(sortKey)
+        ? (Number(String(av).replace(/[^0-9.-]/g, "")) || 0) - (Number(String(bv).replace(/[^0-9.-]/g, "")) || 0)
+        : String(av).localeCompare(String(bv));
+      return sortAsc ? cmp : -cmp;
+    });
+
+    const body = document.getElementById("bodyRows");
+    body.innerHTML = "";
+    rows.slice(0, 1500).forEach(row => {
+      const tr = document.createElement("tr");
+      const flagVal = String(row[flagIdx] || "").toUpperCase();
+      if (flagVal.startsWith("OUT")) tr.className = "flag-out";
+      else if (flagVal.startsWith("LOW")) tr.className = "flag-low";
+      COLS.forEach(col => {
+        const td = document.createElement("td");
+        const value = row[headerIndex[col]] || "";
+        if (col === "Flag" && value) {
+          const pill = document.createElement("span");
+          pill.className = "pill " + (flagVal.startsWith("OUT") ? "bad" : flagVal.includes("EN ROUTE") ? "info" : "warn");
+          pill.textContent = value;
+          td.appendChild(pill);
+        } else {
+          td.textContent = value;
+          if (NUM_COLS.has(col)) td.className = "num";
+        }
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+    if (!rows.length) body.innerHTML = "<tr><td colspan='13'>No matching items.</td></tr>";
+  }
+
+  function setStatus(text) { document.getElementById("statusLine").textContent = text; }
+})();
+</script>
+</body>
+</html>

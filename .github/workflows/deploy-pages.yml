@@ -1,0 +1,55 @@
+# Deploys the static site to GitHub Pages.
+# Triggers:
+#   - every push to main (code changes)
+#   - repository_dispatch "sheet-data-changed" (fired by Apps Script Triggers.gs)
+#   - manual run from the Actions tab
+#
+# Replaces the default Jekyll workflow: this repo is a plain static export,
+# so we upload the repository root directly (faster, no Jekyll processing;
+# .nojekyll is already present).
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [sheet-data-changed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sanity-check frontend JavaScript
+        run: |
+          for f in app.js kpi-sync.js relational-sync.js source-sync.js site-config.js platform-config.js database-config.js; do
+            [ -f "$f" ] && node --check "$f" && echo "OK $f"
+          done
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

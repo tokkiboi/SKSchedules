@@ -1,3 +1,43 @@
 {
-    "github.copilot.chat.agentDebugLog.fileLogging.enabled": true
+    "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
+    "editor.wordWrap": "on",
+    "files.autoGuessEncoding": true,
+    "files.saveConflictResolution": "overwriteFileOnDisk",
+    "files.simpleDialog.enable": true,
+    "workbench.reduceTransparency": "auto",
+    "workbench.settings.alwaysShowAdvancedSettings": true,
+    "workbench.browser.openLocalhostLinks": true,
+    "workbench.browser.enableRemoteProxy": true,
+    "workbench.browser.experimentalUserTools.enabled": true,
+    "chat.agent.sandbox.enabledWindows": "on",
+    "chat.editor.wordWrap": "on",
+    "chat.mcp.discovery.enabled": {
+        "claude-desktop": true,
+        "cursor-global": true,
+        "cursor-workspace": true,
+        "windsurf": true
+    },
+    "chat.mcp.collisionBehavior": "suffix",
+    "chat.mcp.gallery.enabled": true,
+    "chat.mcp.assisted.nuget.enabled": true,
+    "chat.experimental.useSkillAdherencePrompt": true,
+    "chat.useNestedAgentsMdFiles": true,
+    "inlineChat.notebookAgent": true,
+    "debug.allowBreakpointsEverywhere": true,
+    "scm.alwaysShowActions": true,
+    "scm.alwaysShowRepositories": true,
+    "scm.diffDecorationsGutterPattern": {
+        "added": true
+    },
+    "scm.providerCountBadge": "auto",
+    "scm.repositories.explorer": true,
+    "scm.workingSets.enabled": true,
+    "extensions.allowOpenInModalEditor": true,
+    "extensions.supportNodeGlobalNavigator": true,
+    "remote.downloadExtensionsLocally": true,
+    "remote.localPortHost": "allInterfaces",
+    "telemetry.editStats.details.enabled": true,
+    "telemetry.editStats.showDecorations": true,
+    "telemetry.editStats.showStatusBar": true,
+    "telemetry.feedback.enabled": false
 }
